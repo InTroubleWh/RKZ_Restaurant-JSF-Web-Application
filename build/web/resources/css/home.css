@@ -1,0 +1,509 @@
+@font-face {
+    font-family: 'gothamRoundedBold';
+    src: url('GothamRoundedBold.otf') format('opentype');
+    font-weight: normal;
+    font-style: bold;
+}
+
+/* Mengatur font default untuk seluruh halaman */
+body {
+    font-family: 'gothamRoundedBold',sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #333;
+    background-color: #f8f9fa; /* Warna latar belakang halaman */
+}
+
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    transition: background-image 0.3s ease-in-out;
+}
+
+.carousel-images {
+    display: flex; /* Mengatur gambar agar berada dalam satu baris */
+    transition: transform 0.5s ease; /* Transisi untuk perubahan slide */
+}
+
+.carousel-image {
+    display: none; /* Hide all images initially */
+    width: 100%; /* Gambar menyesuaikan dengan lebar carousel */
+    height: auto; /* Atur tinggi gambar di carousel */
+    object-fit: cover; /* Memastikan gambar tetap proporsional */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Style the carousel container */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust this based on your desired banner height */
+    overflow: hidden;
+    background-color: #000; /* Ensure the background is visible around the image */
+}
+
+/* Style the images within the carousel */
+.carousel-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container while maintaining aspect ratio */
+    border-radius: 10px; /* Optional: to give the image rounded corners */
+}
+
+.recommendations {
+    text-align: center; /* Memusatkan teks */
+    margin: 20px 0; /* Jarak atas dan bawah */
+}
+
+.card-container {
+    display: flex;
+    justify-content: center; /* Memusatkan konten */
+    flex-wrap: wrap; /* Membungkus card jika tidak muat */
+    margin: 20px 0; /* Jarak atas dan bawah */
+}
+
+.card {
+    margin: 10px; /* Jarak antar card */
+    width: calc(33.33% - 20px); /* Tiga card berjejer */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi transisi */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Membesarkan kartu saat hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Mengubah bayangan saat hover */
+}
+
+.card img {
+    height: 200px; /* Sesuaikan tinggi gambar card */
+    object-fit: cover; /* Mengatur gambar agar tetap proporsional */
+}
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+    .carousel {
+        max-width: 90%; /* Lebar maksimum untuk tablet */
+    }
+
+    .carousel-image {
+        height: 400px; /* Mengurangi tinggi gambar di carousel untuk tablet */
+    }
+
+    .card {
+        width: calc(50% - 20px); /* Dua card berjejer di tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        max-width: 100%; /* Lebar penuh untuk mobile */
+    }
+
+    .carousel-image {
+        height: 300px; /* Mengurangi tinggi gambar di carousel untuk mobile */
+    }
+
+    .card {
+        width: 100%; /* Satu card penuh di mobile */
+        margin: 10px 0; /* Jarak vertikal antar card */
+    }
+}
+/* Navbar Styling */
+.navbar {
+    width: 100%;
+    background-color: #ffffff; /* Mengubah navbar menjadi warna putih */
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Ruang antara logo dan konten kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+    font-family: 'gothamRoundedBold', sans-serif; /* Terapkan font ke navbar */
+}
+
+/* Bagian utama dari navbar */
+.navbar-content {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 12%;
+    transition: all 0.50s ease;
+    box-shadow: 0 4px 2px -2px #00000033;
+    background-color: #ffffff; /* Pastikan navbar tetap putih */
+}
+/* CSS for the logo */
+.navbar-logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust as needed */
+    flex: 0 1 auto;
+}
+/* Logo */
+.navbar-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+
+}
+
+/* Navbar links */
+.navbar-links {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    color: #000;
+    border-radius: 4px;
+    justify-content: center; /* Posisi link di tengah */
+    flex-grow: 1; /* Memungkinkan link untuk tumbuh dan menempati ruang */
+    gap: 10px; /* Memberi jarak antar link */
+    text-align: center; /* Memastikan teks berada di tengah */
+    margin-left: auto; /* Dorong ke kanan untuk memposisikan di tengah */
+    margin-right: auto; /* Dorong ke kiri untuk memposisikan di tengah */
+}
+
+/* Active Navbar Link Style */
+.navbar-link.active {
+    color:  #0d4732; /* ijo */
+}
+
+.navbar-link {
+    margin: 0 30px; /* Jarak antar link */
+    font-size: 16px;
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #0d4732; /* Warna saat hover */
+}
+
+/* Navbar buttons */
+.navbar-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px; /* Jarak antar tombol */
+}
+
+.navbar-button-blue {
+    background-color: #0d4732;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Optional: Adjust padding for better appearance */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+.navbar-button-blue:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+
+.navbar-button-red {
+    background-color: #0d4732;
+    border-color: none;
+    color: white;
+}
+
+.navbar-button-red:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+/* Navbar user icon */
+.navbar-icon {
+    width: 30px; /* Ukuran ikon profil */
+    height: auto;
+    margin-right: 30px; /* Jarak antara ikon dan teks */
+}
+/* Navbar Right (Daftar, Masuk, Logout) */
+.navbar-right {
+    display: flex;
+    align-items: center; /* Ratakan elemen secara vertikal */
+    justify-content: flex-end; /* Letakkan di ujung kanan navbar */
+    margin-left: auto; /* Mendorong konten ke sebelah kanan */
+}
+
+/* Efek hover untuk tombol di navbar */
+.navbar-button:hover {
+    background-color: white; /* Warna putih */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+}
+
+/* Menempatkan tombol di sebelah kanan */
+.navbar-right {
+    float: right; /* Tempatkan tombol di sebelah kanan */
+}
+
+/* Gaya untuk teks nama pengguna di navbar */
+.navbar-username {
+    font-size: 16px; /* Ukuran font */
+    margin-right: 10px; /* Jarak antara teks dan tombol logout */
+    line-height: 40px; /* Tinggi garis agar rata dengan tombol */
+    display: inline-block; /* Biar sebaris dengan tombol */
+}
+
+
+/* Footer */
+/* Default Footer Link Style */
+.footer-link {
+    color: #0d4732; /* Warna default */
+    text-decoration: none;
+}
+
+/* Active Footer Link Style - Mengubah warna teks menjadi merah */
+.footer-link.active {
+    color: white; /* Warna teks merah */
+    font-weight: bold; /* Teks ditebalkan */
+}
+.footer {
+    background-color: #0d4732;
+    padding: 60px 0;
+    font-family: 'gothamRoundedBold',sans-serif;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-col {
+    flex-basis: 30%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: white; /* Warna merah garis bawah */
+    height: 3px;
+    width: 50px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: white; /* Warna putih saat hover */
+}
+
+.social-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    line-height: 40px;
+    margin: 0 10px 10px 0;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #0d4732;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    list-style: none;
+}
+
+.social-links a:hover {
+    background-color: #0d4732;/* Warna merah saat hover */
+}
+
+@media screen and (max-width: 768px) {
+    .footer .row {
+        flex-direction: column;
+    }
+    .footer-col {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+    }
+}
+/* Scroll Section */
+.scroll-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.scroll-image img {
+    width: 45%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.scroll-description {
+    width: 50%;
+    padding-left: 20px;
+}
+
+.scroll-description h4 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.scroll-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0d4732;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+/* CSS for scroll animation section */
+.scroll-center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto; /* Center horizontally and add spacing */
+    max-width: 1200px; /* Limit the maximum width */
+    opacity: 0;
+    transform: translateY(50px); /* Move down a bit initially */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth transition effect */
+}
+
+/* When the section is visible in the viewport */
+.scroll-center-container.visible {
+    opacity: 1;
+    transform: translateY(0); /* Reset transform to bring the section into view */
+}
+
+.scroll-image {
+    flex: 1; /* Image takes equal space */
+    margin-right: 20px; /* Spacing between image and description */
+}
+
+.scroll-image img {
+    width: 100%; /* Ensure image fills the container */
+    max-width: 600px; /* Set a maximum width for the image */
+}
+
+.scroll-description {
+    flex: 1; /* Description takes equal space */
+    max-width: 600px;
+    text-align: center; /* Center text and button inside the description area */
+}
+
+/* Styling the "View Menu" button */
+.view-menu-button {
+    background-color: #0d4732; /* Green background */
+    color: white;              /* White text */
+    padding: 10px 20px;        /* Padding to make the button larger */
+    border: none;              /* Remove border */
+    border-radius: 5px;        /* Slightly rounded corners */
+    cursor: pointer;           /* Pointer cursor on hover */
+    font-size: 16px;           /* Button text size */
+    margin-top: 15px;          /* Space above the button */
+    text-align: center;        /* Ensure the button is centered */
+}
+
+/* Button hover effect */
+.view-menu-button:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+
+/* Keep other cards unchanged */
+.card-container .card {
+    /* Your existing card styles */
+}
+/* Centering the scroll-triggered image */
+.scroll-center-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Adjust spacing as needed */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Start with an offset */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth transition */
+}
+
+.scroll-center-image-container.visible {
+    opacity: 1; /* Fully visible when in view */
+    transform: translateY(0); /* Move to original position */
+}
+
+/* Ensure the image is centered */
+.scroll-image img {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    width: var(--image-width, 400px); /* Use CSS variable for width or default to 400px */
+    height: var(--image-height, auto); /* Use CSS variable for height or auto by default */
+    object-fit: cover; /* Keep aspect ratio while filling the container */
+}

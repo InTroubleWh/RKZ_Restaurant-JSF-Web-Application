@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Specialoffer" table="specialoffer" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="specialOfferId" type="java.lang.Integer">
+            <column name="specialOfferId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="menu" class="model.Menu" fetch="select">
+            <column name="itemId" not-null="true" />
+        </many-to-one>
+        <property name="originalPrice" type="big_decimal">
+            <column name="originalPrice" precision="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

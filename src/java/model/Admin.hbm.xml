@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Admin" table="admin" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="adminId" type="java.lang.Integer">
+            <column name="adminId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userAccounts" class="model.UserAccounts" fetch="select">
+            <column name="userId" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

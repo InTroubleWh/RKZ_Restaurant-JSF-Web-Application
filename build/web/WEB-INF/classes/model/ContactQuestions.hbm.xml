@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.ContactQuestions" table="contact_questions" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="contactId" type="java.lang.Integer">
+            <column name="contactId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userAccounts" class="model.UserAccounts" fetch="select">
+            <column name="userId" not-null="true" />
+        </many-to-one>
+        <property name="subject" type="string">
+            <column name="subject" not-null="true" />
+        </property>
+        <property name="question" type="string">
+            <column name="question" length="65535" not-null="true" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

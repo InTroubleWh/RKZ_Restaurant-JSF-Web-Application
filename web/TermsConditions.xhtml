@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </h:head>
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <title>Terms Condition</title>
+                <h:outputStylesheet name="css/privacy.css"/>
+            </ui:define>
+            <ui:define name="body-content">
+                <!-- Main Container for Privacy Policy -->
+                <div class="privacy-container">
+                    <!-- Page Title -->
+                    <h1 class="privacy-title">Terms Condition</h1>
+
+                    <!-- Privacy Image -->
+                    <div class="privacy-image">
+                        <h:graphicImage value="resources/images/logorkz.png" alt="Privacy Policy Image" />
+                    </div>
+
+                    <!-- Privacy Description -->
+                    <div class="privacy-description">
+                        <p>
+                            Welcome to Rumah Makan, your top destination for premium steaks and classic Western dishes like Fish and Chips. We value your trust as our customer and are committed to providing you with the best service possible.
+                        </p>
+                        <p>
+                            By accessing or using our services, you agree to the following terms and conditions. We provide the information on this website in good faith, but we do not guarantee that the information will always be accurate, complete, or up-to-date.
+                        </p>
+                        <p>
+                            All transactions made at Rumah Makan, whether through online orders or in-person, are subject to availability and the applicable prices at the time of the transaction. We reserve the right to change our menu, prices, or policies at any time without prior notice.
+                        </p>
+                        <p>
+                            Customers are expected to provide accurate and complete information when placing an order. Any violation of these terms and conditions may result in the cancellation of the order or the termination of your access to our services.
+                        </p>
+                        <p>
+                            Thank you for choosing Rumah Makan. If you have any further questions regarding our terms and conditions, please do not hesitate to contact us.
+                        </p>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

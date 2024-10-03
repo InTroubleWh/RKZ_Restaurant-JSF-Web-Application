@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin Menu Management</title>
+        <style>
+            @font-face {
+                font-family: 'gothamRoundedBold';
+                src: url('GothamRoundedBold.otf') format('opentype');
+                font-weight: normal;
+                font-style: bold;
+            }
+            /* Navbar Styling */
+            .navbar {
+                width: 100%;
+                background-color: #ffffff; /* Mengubah navbar menjadi warna putih */
+                padding: 10px 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: flex;
+                justify-content: space-between; /* Ruang antara logo dan konten kanan */
+                align-items: center; /* Rata tengah secara vertikal */
+                font-family: 'gothamRoundedBold', sans-serif; /* Terapkan font ke navbar */
+            }
+
+            /* Bagian utama dari navbar */
+            .navbar-content {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                right: 0;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 2px 12%;
+                transition: all 0.50s ease;
+                box-shadow: 0 4px 2px -2px #00000033;
+                background-color: #ffffff; /* Pastikan navbar tetap putih */
+            }
+            /* CSS for the logo */
+            .navbar-logo-container {
+                display: flex;
+                align-items: center;
+                margin-right: 20px; /* Adjust as needed */
+                flex: 0 1 auto;
+            }
+            /* Logo */
+            .navbar-logo {
+                width: 50px;
+                height: auto;
+                margin-right: 20px;
+
+            }
+
+            /* Navbar links */
+            .navbar-links {
+                padding: 10px 20px;
+                text-decoration: none;
+                display: flex;
+                color: #000;
+                border-radius: 4px;
+                justify-content: center; /* Posisi link di tengah */
+                flex-grow: 1; /* Memungkinkan link untuk tumbuh dan menempati ruang */
+                gap: 10px; /* Memberi jarak antar link */
+                text-align: center; /* Memastikan teks berada di tengah */
+                margin-left: auto; /* Dorong ke kanan untuk memposisikan di tengah */
+                margin-right: auto; /* Dorong ke kiri untuk memposisikan di tengah */
+            }
+
+            /* Active Navbar Link Style */
+            .navbar-link.active {
+                color:  #0d4732; /* ijo */
+            }
+
+            .navbar-link {
+                font-family: 'gothamRoundedBold',sans-serif;
+                margin: 0 30px; /* Jarak antar link */
+                font-size: 16px;
+                text-decoration: none; /* Hilangkan garis bawah */
+                color: #333;
+                cursor: pointer;
+                transition: color 0.3s ease;
+                font-weight: bold;
+            }
+
+            .navbar-link:hover {
+                color: #0d4732; /* Warna saat hover */
+            }
+
+            /* Navbar buttons */
+            .navbar-button {
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                margin-left: 10px; /* Jarak antar tombol */
+            }
+
+            .navbar-button-blue {
+                background-color: #0d4732;
+                color: white;
+                border: none;
+                padding: 10px 20px; /* Optional: Adjust padding for better appearance */
+                cursor: pointer;
+                transition: background-color 0.3s ease; /* Smooth transition effect */
+            }
+
+            .navbar-button-blue:hover {
+                background-color: white; /* Change background to white on hover */
+                color: #0d4732; /* Change text color to match the original background */
+                border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+            }
+
+            .navbar-button-red {
+                background-color: #0d4732;
+                border-color: none;
+                color: white;
+            }
+
+            .navbar-button-red:hover {
+                background-color: white; /* Change background to white on hover */
+                color: #0d4732; /* Change text color to match the original background */
+                border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+            }
+            /* Navbar user icon */
+            .navbar-icon {
+                width: 30px; /* Ukuran ikon profil */
+                height: auto;
+                margin-right: 30px; /* Jarak antara ikon dan teks */
+            }
+            /* Navbar Right (Daftar, Masuk, Logout) */
+            .navbar-right {
+                display: flex;
+                align-items: center; /* Ratakan elemen secara vertikal */
+                justify-content: flex-end; /* Letakkan di ujung kanan navbar */
+                margin-left: auto; /* Mendorong konten ke sebelah kanan */
+            }
+
+            /* Efek hover untuk tombol di navbar */
+            .navbar-button:hover {
+                background-color: white; /* Warna putih */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+            }
+
+            /* Menempatkan tombol di sebelah kanan */
+            .navbar-right {
+                float: right; /* Tempatkan tombol di sebelah kanan */
+            }
+
+            /* Gaya untuk teks nama pengguna di navbar */
+            .navbar-username {
+                font-size: 16px; /* Ukuran font */
+                margin-right: 10px; /* Jarak antara teks dan tombol logout */
+                line-height: 40px; /* Tinggi garis agar rata dengan tombol */
+                display: inline-block; /* Biar sebaris dengan tombol */
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group h:outputLabel {
+                margin-bottom: 5px;
+            }
+
+            .form-group h:inputText,
+            .form-group h:inputSecret {
+                width: 70%; /* Adjust the width as necessary */
+            }
+            .ui-button.logout-button {
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                margin-left: 10px; /* Jarak antar tombol */
+                background-color: #0d4732;
+                border-color: none;
+                color: white;
+            }
+            .ui-button.logout-button:hover {
+                background-color: white; /* Change background to white on hover */
+                color: #0d4732; /* Change text color to match the original background */
+                border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+            <h:panelGroup layout="block" styleClass="navbar-links">
+                <h:link value="Menu" outcome="AdminMenu.xhtml?faces-redirect=true" 
+                        styleClass="#{facesContext.viewRoot.viewId eq '/AdminMenu.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                <h:link value="Reservations" outcome="ReservationView.xhtml?faces-redirect=true" 
+                        styleClass="#{facesContext.viewRoot.viewId eq '/ReservationView.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+            </h:panelGroup>
+            <!-- DataTable for Displaying Menu Items -->
+            <p:dataTable id="menuTable" value="#{menuBean.menuList}" var="menu" editable="true" 
+                         paginator="true" rows="10" style="width:100%" >
+
+                <p:column headerText="Image">
+                    <p:graphicImage value="#{imageBean.menuImage}" style="width:100px;height:100px">
+                        <f:param name="imageId" value="#{menu.itemId}"/>
+                    </p:graphicImage>
+                </p:column>
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{menu.name}" />
+                </p:column>
+
+                <p:column headerText="Price">
+                    <h:outputText value="#{menu.price}" />
+                </p:column>
+
+                <p:column headerText="Category">
+                    <h:outputText value="#{menu.category}" />
+                </p:column>
+
+                <p:column headerText="Active">
+                    <h:outputText value="#{menu.active}"/>
+                </p:column>
+
+                <p:column headerText="Actions">
+                    <div style="display:flex;justify-content: space-between;">
+                        <p:commandButton value="Edit" icon="pi pi-pencil" 
+                                         action="#{menuBean.editMenu(menu)}"
+                                         process="@this"
+                                         oncomplete="PF('addMenuDialog').show()" 
+                                         update="menuForm:addMenuDialog"/>
+                        <p:commandButton value="Deactivate" icon="pi pi-ban" 
+                                         action="#{menuBean.deactivateMenu(menu)}"
+                                         process="@this"
+                                         update=":menuForm:menuTable"/>
+                        <p:commandButton value="Delete" icon="pi pi-trash" 
+                                         action="#{menuBean.deleteMenu(menu)}" 
+                                         process="@this"
+                                         update=":menuForm:menuTable"/>
+                    </div>
+                </p:column>
+
+            </p:dataTable>
+
+            <!-- Button for Adding New Menu -->
+            <p:commandButton value="Add New Menu" icon="pi pi-plus"
+                             action="#{menuBean.newMenu}"
+                             process="@this"
+                             oncomplete="PF('addMenuDialog').show();"
+                             style="margin-top:10px;"
+                             update="menuForm:addMenuDialog"/>
+
+            <!-- Button for Logout -->
+            <p:commandButton value="Logout" action="#{userSessionBean.logout}" 
+                             styleClass="logout-button" 
+                             process="@this" 
+                             immediate="true"/>
+
+
+            <!-- Dialog for Adding or Editing Menu -->
+            <p:dialog header="Menu Form" id = "addMenuDialog" widgetVar="addMenuDialog" 
+                      modal="true" resizable="false" width="400">
+
+                <h:panelGrid columns="2" cellpadding="5" styleClass="form-group">
+                    <p:graphicImage value="#{imageBean.menuImage}" 
+                                    style="width:100px;height:100px" 
+                                    rendered="#{menuBean.selectedMenu.itemId != null}">
+                        <f:param name="imageId" value="#{menuBean.selectedMenu.itemId}"/>
+                    </p:graphicImage>
+                    <h:outputText value=""/>
+
+                    <h:outputLabel for="image" value="Image:" />
+                    <p:fileUpload id="image" value="#{menuBean.uploadedFile}" 
+                                  mode="simple" 
+                                  skinSimple="true" 
+                                  auto="true" 
+                                  fileLimit="1"
+                                  allowTypes="/(\.|\/)(png)$/" />
+
+                    <h:outputLabel for="name" value="Name:" />
+                    <h:inputText id="name" value="#{menuBean.selectedMenu.name}" required="true" />
+
+                    <h:outputLabel for="price" value="Price:" />
+                    <h:inputText id="price" value="#{menuBean.selectedMenu.price}" required="true" />
+
+                    <h:outputLabel for="category" value="Category:" />
+                    <h:inputText id="category" value="#{menuBean.selectedMenu.category}" required="true" />
+                </h:panelGrid>
+
+                <p:commandButton value="Save" action="#{menuBean.saveMenu()}" 
+                                 update=":menuForm" 
+                                 oncomplete="PF('addMenuDialog').hide();" 
+                                 icon="pi pi-check" />
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>

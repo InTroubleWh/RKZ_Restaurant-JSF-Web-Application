@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:insert name="page-title"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    </h:head>
+    <h:body>
+        <!--Navbar and login section-->
+        <div class="navbar">
+            <h:form>
+                <h:panelGroup layout="block" styleClass="navbar-content">
+                    <!-- Logo or restaurant name -->
+                    <div class="navbar-logo-container">
+                        <h:commandLink action="HomePage.xhtml?faces-redirect=true">
+                            <h:graphicImage value="resources/images/logorkz.png" alt="Logo Restoran" styleClass="navbar-logo"/>
+                        </h:commandLink>
+                    </div>
+                    <!-- Main navigation menu -->
+                    <h:panelGroup layout="block" styleClass="navbar-links">
+                        <h:commandLink value="Home" action="HomePage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/HomePage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="Menu" action="MenuPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/MenuPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="About Us" action="AboutUsPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/AboutUsPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="Order Now" action="OrderPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/OrderPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                    </h:panelGroup>
+                    <!-- User login buttons -->
+                    <h:panelGroup layout="block" styleClass="navbar-right">
+                        <!-- Panel for users not logged in -->
+                        <h:panelGroup rendered="#{!userSessionBean.loggedIn}">
+                            <h:commandButton value="Daftar" action="RegisterPage.xhtml?faces-redirect=true" styleClass="navbar-button navbar-button-blue"/>
+                            <h:commandButton value="Masuk" action="LoginPage.xhtml?faces-redirect=true" styleClass="navbar-button navbar-button-blue"/>
+                        </h:panelGroup>
+                        <!-- Panel for users who are logged in -->
+                        <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                            <h:commandLink action="ProfilePage.xhtml?faces-redirect=true" styleClass="navbar-link">
+                                <h:outputText value="Halo, #{userSessionBean.currentUser.username}" styleClass="navbar-username"/>
+                            </h:commandLink>
+                            <h:commandButton value="Logout" action="#{userSessionBean.logout}" styleClass="navbar-button navbar-button-red"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:form>
+        </div>
+        <ui:insert name="body-content"/>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Company Section -->
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <!-- Link to About Us page -->
+                            <h:form>
+                                <li>
+                                    <h:commandLink value="About Us" 
+                                                   action="AboutUsPage.xhtml?faces-redirect=true" 
+                                                   styleClass="#{facesContext.viewRoot.viewId eq '/AboutUsPage.xhtml' ? 'footer-link active' : 'footer-link'}"/>
+                                </li>
+                                <!-- Link to Privacy Policy page -->
+                                <li>
+                                    <h:commandLink value="Privacy &amp; Policy" 
+                                                   action="PrivacyPolicy.xhtml?faces-redirect=true" 
+                                                   styleClass="#{facesContext.viewRoot.viewId eq '/PrivacyPolicy.xhtml' ? 'footer-link active' : 'footer-link'}"/>
+                                </li>
+                                <!-- Link to Terms & Condition page -->
+                                <li>
+                                    <h:commandLink value="Terms &amp; Condition" 
+                                                   action="TermsConditions.xhtml?faces-redirect=true" 
+                                                   styleClass="#{facesContext.viewRoot.viewId eq '/TermsConditions.xhtml' ? 'footer-link active' : 'footer-link'}"/>
+                                </li>
+                            </h:form>
+                        </ul>
+                    </div>
+                    <!-- Contact Us Section -->
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <h:form>
+                                <!-- Link to Contact Us page -->
+                                <li>
+                                    <h:commandLink value="Contact" 
+                                                   action="ContactUs.xhtml?faces-redirect=true" 
+                                                   styleClass="#{facesContext.viewRoot.viewId eq '/ContactUs.xhtml' ? 'footer-link active' : 'footer-link'}"/>
+                                </li>
+                            </h:form>
+                        </ul>
+                    </div>
+                    <!-- How to Reach Us Section -->
+                    <div class="footer-col">
+                        <h4>How to Reach Us</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/ayo.indonesia/" target="_blank"><i class="ri-instagram-line"></i></a>
+                            <a href="https://maps.app.goo.gl/vyFhwrUeHUohAFvD8" target="_blank"><i class="ri-map-pin-2-fill"></i></a>
+                            <a href="https://x.com/ayosportapp" target="_blank"><i class="ri-twitter-fill"></i></a>
+                            <a href="https://web.facebook.com/ayo.indonesia.sports?_rdc=1&amp;_rdr" target="_blank"><i class="ri-facebook-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <ui:insert name="body-script"/>
+    </h:body>
+</html>
+

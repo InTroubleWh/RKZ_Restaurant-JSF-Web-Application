@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <title>Home</title>
+                <h:outputStylesheet name="css/home.css"/>
+                <h:outputScript name="js/carousel.js" />
+            </ui:define>
+            <ui:define name="body-content">
+                <!-- Contact Us Card -->
+                <div id="contactCard">
+                    <h:form id="contactForm">
+                        <h2>Contact Us</h2>
+
+                        <!-- Display User Information (Auto-Filled) -->
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel value="Username:" />
+                            <h:outputText value="#{userSessionBean.currentUser.username}" />
+
+                            <h:outputLabel value="Email:" />
+                            <h:outputText value="#{userSessionBean.currentUser.email}" />
+
+                            <h:outputLabel value="Phone Number:" />
+                            <h:outputText value="#{userSessionBean.currentUser.userPnum}" />
+                        </h:panelGrid>
+
+                        <!-- Contact Form -->
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="subject" value="Subject:" />
+                            <h:inputText id="subject" value="#{contactUsBean.subject}" required="true" styleClass="input-field" />
+
+                            <h:outputLabel for="question" value="Question:" />
+                            <h:inputTextarea id="question" value="#{contactUsBean.question}" required="true" rows="5" cols="40" styleClass="input-field" />
+
+
+
+                            <!-- Submit Button -->
+                            <h:commandButton value="Submit" action="#{contactUsBean.submitQuestion}" styleClass="send-button" />
+                        </h:panelGrid>
+                        <h:messages globalOnly="true" />
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

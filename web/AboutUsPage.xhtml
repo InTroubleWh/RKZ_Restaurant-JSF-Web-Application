@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </h:head>
+
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <title>About Us</title>
+                <h:outputStylesheet name="css/home.css" />
+                <h:outputStylesheet name="css/about.css" />
+            </ui:define>
+            <ui:define name="body-content">
+                <h:form>
+                    <!-- Section utama tentang About Us -->
+                    <div class="about-us-container">
+                        <h2 class="about-us-title">About Us</h2>
+                        <img src="resources/images/logorkz.png" alt="Restaurant Image" class="about-image"/>
+
+                        <p>
+                            Our restaurant specializes in premium steaks, carefully selected and expertly prepared to deliver the perfect dining experience. Beyond our renowned steaks, we also offer a variety of other dishes including baked potatoes, fresh salads, and an array of classic Western dishes that complement our steak offerings. Whether you're in the mood for a hearty meal or a lighter option, our diverse menu ensures there's something for everyone to enjoy.
+                        </p>
+
+                        <!-- Vision and Mission Section -->
+                        <div class="vision-mission-container">
+                            <h2 class="vision-mission-title">Vision &amp; Mission</h2>
+                            <h3 class="mission-title">Mission</h3>
+                            <p class="mission-description">
+                                To provide our customers with an unforgettable dining experience by serving high-quality meals and exceptional service in a warm and inviting atmosphere.
+                            </p>
+                            <h3 class="vision-title">Vision</h3>
+                            <p class="vision-description">
+                                To be recognized as the premier destination for steak lovers and to expand our reach by continually innovating our menu and enhancing our customer service.
+                            </p>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

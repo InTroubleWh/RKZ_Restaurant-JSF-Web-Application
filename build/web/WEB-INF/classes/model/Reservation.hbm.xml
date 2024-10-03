@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Reservation" table="reservation" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="reserveId" type="java.lang.Integer">
+            <column name="reserveID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="outlet" class="model.Outlet" fetch="select">
+            <column name="outletId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userAccounts" class="model.UserAccounts" fetch="select">
+            <column name="userId" not-null="true" />
+        </many-to-one>
+        <property name="customerName" type="string">
+            <column name="customerName" length="60" not-null="true" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="phoneNumber" length="15" not-null="true" />
+        </property>
+        <property name="reservedDate" type="date">
+            <column name="reservedDate" length="10" not-null="true" />
+        </property>
+        <property name="reservedTime" type="time">
+            <column name="reservedTime" length="8" not-null="true" />
+        </property>
+        <property name="durationHours" type="int">
+            <column name="duration_hours" not-null="true" />
+        </property>
+        <property name="dateOnReservation" type="timestamp">
+            <column name="dateOnReservation" length="19" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="8" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

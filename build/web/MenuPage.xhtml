@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>RKZ Restaurant - Menu</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <h:outputStylesheet name="css/menu.css"/>
+            </ui:define>
+            <ui:define name="body-content">
+                <div style="display:flex; margin:80px auto;">
+                    <div style="width: 70%">
+                        <h:form>
+                            <div class="card-container">
+                                <p:carousel value="#{menuBean.mainMenus}" var="item" numVisible="4" numScroll="3" responsiveOptions="#{menuBean.ro}">
+                                    <f:facet name="header">
+                                        <h1>Main Dish</h1>
+                                    </f:facet>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-image">
+                                                <p:graphicImage value="#{imageBean.menuImage}">
+                                                    <f:param name="imageId" value="#{item.itemId}"/>
+                                                </p:graphicImage>
+                                            </div>
+                                            <h3>#{item.name}</h3>
+                                            <h5>
+                                                <h:outputText value="#{item.price}">
+                                                    <f:convertNumber type="currency" pattern="¤#0" currencySymbol="Rp."/>
+                                                </h:outputText>
+                                            </h5>
+                                            <p:commandButton value="Order Now" styleClass="orderbtn" action="#{cartBean.addToCart(item)}" 
+                                                             update="cartForm"/>
+                                        </div>
+                                    </div>
+                                </p:carousel>
+                            </div>
+                            <div class="card-container">
+                                <p:carousel value="#{menuBean.sideMenus}" var="item" numVisible="4" numScroll="3">
+                                    <f:facet name="header">
+                                        <h1>Side Dish</h1>
+                                    </f:facet>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-image">
+                                                <p:graphicImage value="#{imageBean.menuImage}">
+                                                    <f:param name="imageId" value="#{item.itemId}"/>
+                                                </p:graphicImage>
+                                            </div>
+                                            <h3>#{item.name}</h3>
+                                            <h5>
+                                                <h:outputText value="#{item.price}">
+                                                    <f:convertNumber type="currency" pattern="¤#0" currencySymbol="Rp."/>
+                                                </h:outputText>
+                                            </h5>
+                                            <p:commandButton value="Order Now" styleClass="orderbtn" action="#{cartBean.addToCart(item)}" 
+                                                             update="cartForm"/>
+                                        </div>
+                                    </div>
+                                </p:carousel>
+                            </div>
+                            <div class="card-container">
+                                <p:carousel value="#{menuBean.dessertMenus}" var="item" numVisible="4" numScroll="3">
+                                    <f:facet name="header">
+                                        <h1>Desserts</h1>
+                                    </f:facet>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-image">
+                                                <p:graphicImage value="#{imageBean.menuImage}">
+                                                    <f:param name="imageId" value="#{item.itemId}"/>
+                                                </p:graphicImage>
+                                            </div>
+                                            <h3>#{item.name}</h3>
+                                            <h5>
+                                                <h:outputText value="#{item.price}">
+                                                    <f:convertNumber type="currency" pattern="¤#0" currencySymbol="Rp."/>
+                                                </h:outputText>
+                                            </h5>
+                                            <p:commandButton value="Order Now" styleClass="orderbtn" action="#{cartBean.addToCart(item)}" 
+                                                             update="cartForm"/>
+                                        </div>
+                                    </div>
+                                </p:carousel>
+                            </div>
+                            <div class="card-container">
+                                <p:carousel value="#{menuBean.drinksMenus}" var="item" numVisible="4" numScroll="3">
+                                    <f:facet name="header">
+                                        <h1>Drinks</h1>
+                                    </f:facet>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-image">
+                                                <p:graphicImage value="#{imageBean.menuImage}">
+                                                    <f:param name="imageId" value="#{item.itemId}"/>
+                                                </p:graphicImage>
+                                            </div>
+                                            <h3>#{item.name}</h3>
+                                            <h5>
+                                                <h:outputText value="#{item.price}">
+                                                    <f:convertNumber type="currency" pattern="¤#0" currencySymbol="Rp."/>
+                                                </h:outputText>
+                                            </h5>
+                                            <p:commandButton value="Order Now" styleClass="orderbtn" action="#{cartBean.addToCart(item)}" 
+                                                             update="cartForm"/>
+                                        </div>
+                                    </div>
+                                </p:carousel>
+                            </div>
+                        </h:form>
+                    </div>
+                    <div style="width: 28%;">
+                        <h:form id="cartForm">
+                            <div class="order-cart">
+                                <h1>Your Order</h1>
+                                <div class="cart-content-container">
+                                    <ul class="cart-content">
+                                        <ui:repeat value="#{cartBean.userCartItems}" var="item">
+                                            <li class="cart-item">
+                                                <div class="cart-item-container">
+                                                    <span class="item-name-wrap">#{item.menu.name}</span>
+                                                    <span class="item-price-wrap">
+                                                        <h:outputText value="#{item.menu.price}">
+                                                            <f:convertNumber type="currency" pattern="¤#0" currencySymbol="Rp."/>
+                                                        </h:outputText>
+                                                    </span>
+                                                    <div class="quantity-controls">
+                                                        <p:commandButton value="-" styleClass="btn" 
+                                                                         action="#{cartBean.decreaseQuantity(item)}" update="cartForm"/>
+                                                        <span>#{item.quantity}</span>
+                                                        <p:commandButton value="+" styleClass="btn" 
+                                                                         action="#{cartBean.increaseQuantity(item)}" update="cartForm"/>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </div>
+                                <p:commandButton value="Payment" styleClass="payment-button" action="#{cartBean.toCheckoutPage()}" process="@this"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

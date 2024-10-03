@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Reservation Page</title>
+        <h:outputStylesheet name="css/reservation.css"/>
+    </h:head>
+    <h:body>
+        <h:form id="reservationForm">
+            <h2>Reservation</h2>
+
+            <!-- Pesan Global Menggunakan h:messages -->
+            <h:messages id="globalMessages" globalOnly="true" style="color:red" />
+
+            <!-- Pesan Global Menggunakan p:messages -->
+            <p:messages id="pGlobalMessages" showDetail="true" />
+
+            <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="customerName" value="Customer Name:" />
+                    <h:inputText id="customerName" value="#{reservationBean.reservation.customerName}" required="true" />
+                    <h:message for="customerName" style="color:red" />
+
+                    <!-- Phone Number -->
+                    <h:outputLabel for="phoneNumber" value="Phone Number:" />
+                    <h:inputText id="phoneNumber" value="#{reservationBean.reservation.phoneNumber}" required="true" />
+                    <h:message for="phoneNumber" style="color:red" />
+
+                    <!-- Select Outlet -->
+                    <h:outputLabel for="outlet" value="Select Outlet:" />
+                    <h:selectOneMenu id="outlet" value="#{reservationBean.selectedOutletId}" required="true">
+                        <f:selectItem itemLabel="-- Select Outlet --" itemValue="" />
+                        <f:selectItems value="#{reservationBean.outletList}" var="outlet" itemValue="#{outlet.outletId}" itemLabel="#{outlet.outletName}" />
+                    </h:selectOneMenu>
+                    <h:message for="outlet" style="color:red" />
+
+                    <!-- Reserved Date -->
+                    <h:outputLabel for="reservedDate" value="Reserved Date:" />
+                    <p:calendar id="reservedDate" value="#{reservationBean.reservation.reservedDate}" pattern="MM/dd/yyyy" 
+                                mindate="#{reservationBean.today}" maxdate="#{reservationBean.maxDate}" required="true" />
+                    <h:message for="reservedDate" style="color:red" />
+
+                    <!-- Reserved Time -->
+                    <h:outputLabel for="reservedTime" value="Reserved Time:" />
+                    <p:calendar id="reservedTime" value="#{reservationBean.reservation.reservedTime}" timeOnly="true" pattern="HH:mm" required="true" />
+                    <h:message for="reservedTime" style="color:red" />
+
+                    <!-- Duration Hours -->
+                    <h:outputLabel for="duration" value="Duration (hours):" />
+                    <h:inputText id="duration" value="#{reservationBean.reservation.durationHours}" required="true" />
+                    <h:message for="duration" style="color:red" />
+                </h:panelGrid>
+
+                <!-- Tombol Submit dan Cancel -->
+                <h:commandButton id="submitBtn" value="Submit" action="#{reservationBean.submitReservation}" styleClass="btn-submit" />
+                <h:commandButton value="Cancel" action="#{reservationBean.cancelReservation}" immediate="true" styleClass="btn-cancel" />
+            </h:panelGroup>
+            <h:outputText rendered="#{not userSessionBean.loggedIn}" value="Please log in to make a reservation." />
+        </h:form>
+    </h:body>
+</html>
+

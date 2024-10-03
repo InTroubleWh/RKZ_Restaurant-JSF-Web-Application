@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Profile Page</title>
+        <h:outputStylesheet name="css/profile.css" />
+        <h:outputScript name="js/profile.js" />
+        <script type="text/javascript">
+            function togglePasswordChange() {
+                var section = document.getElementById('password-change-section');
+                if (section.style.display === 'none' || section.style.display === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            }
+
+            function confirmDelete() {
+                return confirm("Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.");
+            }
+        </script>
+    </h:head>
+    <h:body>
+        <div class="navbar">
+            <h:form>
+                <h:panelGroup layout="block" styleClass="navbar-content">
+                    <div class="navbar-logo-container">
+                        <h:commandLink action="HomePage.xhtml?faces-redirect=true">
+                            <h:graphicImage value="resources/images/logorkz.png" alt="Logo Restoran" styleClass="navbar-logo"/>
+                        </h:commandLink>
+                    </div>
+                    <h:panelGroup layout="block" styleClass="navbar-links">
+                        <h:commandLink value="Home" action="HomePage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/HomePage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="Menu" action="MenuPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/MenuPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="About Us" action="AboutUsPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/AboutUsPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                        <h:commandLink value="Order Now" action="OrderPage.xhtml?faces-redirect=true" 
+                                       styleClass="#{facesContext.viewRoot.viewId eq '/OrderPage.xhtml' ? 'navbar-link active' : 'navbar-link'}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="navbar-right">
+                        <h:panelGroup rendered="#{!userSessionBean.loggedIn}">
+                            <h:commandButton value="Daftar" action="RegisterPage.xhtml?faces-redirect=true" styleClass="navbar-button navbar-button-blue"/>
+                            <h:commandButton value="Masuk" action="LoginPage.xhtml?faces-redirect=true" styleClass="navbar-button navbar-button-blue"/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                            <h:commandLink action="ProfilePage.xhtml?faces-redirect=true" value="Profil" styleClass="navbar-link"/>
+                            <h:commandButton value="Keluar" action="#{userSessionBean.logout}" styleClass="navbar-button navbar-button-red"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:form>
+        </div>
+
+        <!-- Tambahkan logging dan pengecekan tambahan di preRenderView -->
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{userSessionBean.loadUserProfile}" />
+        </f:metadata>
+
+        <div class="container">
+            <h:form>
+                <div class="card">
+                    <h2>Profile Information</h2>
+                    <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="username" value="Username:" />
+                            <h:inputText id="username" value="#{userSessionBean.currentUser.username}" readonly="true" />
+
+                            <h:outputLabel for="email" value="Email:" />
+                            <h:inputText id="email" value="#{userSessionBean.currentUser.email}" />
+
+                            <h:outputLabel for="userPnum" value="Phone:" />
+                            <h:inputText id="userPnum" value="#{userSessionBean.currentUser.userPnum}" />
+                        </h:panelGrid>
+
+                        <h:commandButton value="Update Profile" action="#{userSessionBean.updateProfile}" styleClass="btn btn-success" />
+                        <h:commandButton value="Change Password" action="ChangePasswordPage.xhtml?faces-redirect=true" styleClass="btn btn-secondary" />
+                        <h:commandButton value="Delete Profile" action="#{userSessionBean.deleteProfile}" styleClass="btn btn-danger" 
+                                         onclick="return confirmDelete();" />
+                    </h:panelGroup>
+
+                    <h:outputText rendered="#{not userSessionBean.loggedIn}" value="Please log in to access your profile." />
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>

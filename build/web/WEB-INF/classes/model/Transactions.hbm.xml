@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Transactions" table="transactions" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="transactionId" type="java.lang.Integer">
+            <column name="transactionId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="outlet" class="model.Outlet" fetch="select">
+            <column name="outletId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userAccounts" class="model.UserAccounts" fetch="select">
+            <column name="userId" not-null="true" />
+        </many-to-one>
+        <property name="transactionDate" type="timestamp">
+            <column name="transactionDate" length="19" not-null="true" />
+        </property>
+        <property name="totalAmount" type="big_decimal">
+            <column name="totalAmount" precision="10" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100" not-null="true" />
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="paymentMethod" length="45" not-null="true" />
+        </property>
+        <set name="transactionitemses" table="transactionitems" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="transactionId" not-null="true" />
+            </key>
+            <one-to-many class="model.Transactionitems" />
+        </set>
+    </class>
+</hibernate-mapping>

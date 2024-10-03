@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <title>Home</title>
+                <h:outputStylesheet library="css" name="home.css"/>
+                <h:outputScript library="js" name="carousel.js" />
+            </ui:define>
+            <ui:define name="body-content">
+                <!-- Carousel Section -->
+                <p:carousel value="#{bannerBean.allBanners()}" var="item" numVisible="1" numScroll="1" circular="true">
+                    <div class="carousel-container">
+                        <p:graphicImage value="#{imageBean.bannerImage}">
+                            <f:param name="bannerId" value="#{item.bannerId}"/>
+                        </p:graphicImage>
+                    </div>
+                </p:carousel>
+
+                <!-- New Section with Scroll Animation (Updated with side-by-side layout) -->
+                <!-- First Scroll Section -->
+                <h:form id="scrollSection1">
+                    <div id="scroll-container" class="scroll-center-container">
+                        <!-- Image -->
+                        <div class="scroll-image">
+                            <img src="resources/images/logorkz.png" alt="Description Image" />
+                        </div>
+                        <!-- Description -->
+                        <div class="scroll-description">
+                            <h4>About Us</h4>
+                            <p>We pride ourselves on offering high-quality dishes and a memorable dining experience. While we specialise in steaks, 
+                                we also provide a selection of other Western favourites. 
+                                Enjoy a warm atmosphere and excellent hospitality as you savour your favourite meals.</p>
+
+                            <!-- View Menu Button -->
+                            <h:commandButton value="About Us" action="MenuPage.xhtml?faces-redirect=true" 
+                                             styleClass="view-menu-button" />
+                        </div>
+                    </div>
+                </h:form>
+
+                <!-- Second Scroll Section -->
+                <h:form id="scrollSection2">
+                    <div id="scroll-container" class="scroll-center-container">
+                        <!-- Image -->
+                        <div class="scroll-image">
+                            <img src="resources/images/rkzdescription.jpg" alt="Second Description Image" />
+                        </div>
+                        <!-- Description -->
+                        <div class="scroll-description">
+                            <h4>Our Menu</h4>
+                            <p>Our restaurant offers a selection of premium steaks, 
+                                perfectly cooked and served with a variety of sides such as baked potatoes and fresh salads. 
+                                We also provide a range of other classic Western dishes that are equally delightful, ensuring a rich and satisfying dining experience.</p>
+                            <!-- View Menu Button -->
+                            <h:commandButton value="View Menu" action="MenuPage.xhtml?faces-redirect=true" 
+                                             styleClass="view-menu-button" />
+                        </div>
+                    </div>
+                </h:form>
+                <!-- Scroll-triggered Image Section -->
+                <h:form id="scrollImageSection">
+                    <div id="scroll-image-container" class="scroll-center-image-container">
+                        <!-- Centered Image -->
+                        <div class="scroll-image">
+                            <img src="resources/images/logorkz.png" alt="Centered Scroll Image" />
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

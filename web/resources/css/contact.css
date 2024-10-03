@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'gothamRoundedBold';
+    src: url('GothamRoundedBold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: 'gothamRoundedBold', sans-serif;
+    font-weight: bold;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffffff; /* Mengubah navbar menjadi warna putih */
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Ruang antara logo dan konten kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+    font-family: 'gothamRoundedBold', sans-serif; /* Terapkan font ke navbar */
+}
+
+/* Bagian utama dari navbar */
+.navbar-content {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 12%;
+    transition: all 0.50s ease;
+    box-shadow: 0 4px 2px -2px #00000033;
+    background-color: #ffffff; /* Pastikan navbar tetap putih */
+}
+/* CSS for the logo */
+.navbar-logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust as needed */
+    flex: 0 1 auto;
+}
+/* Logo */
+.navbar-logo {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+
+}
+
+/* Navbar links */
+.navbar-links {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    color: #000;
+    border-radius: 4px;
+    justify-content: center; /* Posisi link di tengah */
+    flex-grow: 1; /* Memungkinkan link untuk tumbuh dan menempati ruang */
+    gap: 10px; /* Memberi jarak antar link */
+    text-align: center; /* Memastikan teks berada di tengah */
+    margin-left: auto; /* Dorong ke kanan untuk memposisikan di tengah */
+    margin-right: auto; /* Dorong ke kiri untuk memposisikan di tengah */
+}
+
+/* Active Navbar Link Style */
+.navbar-link.active {
+    color:  #0d4732; /* ijo */
+}
+
+.navbar-link {
+    margin: 0 30px; /* Jarak antar link */
+    font-size: 16px;
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #0d4732; /* Warna saat hover */
+}
+
+/* Navbar buttons */
+.navbar-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px; /* Jarak antar tombol */
+}
+
+.navbar-button-blue {
+    background-color: #0d4732;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Optional: Adjust padding for better appearance */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+.navbar-button-blue:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+
+.navbar-button-red {
+    background-color: #0d4732;
+    border-color: none;
+    color: white;
+}
+
+.navbar-button-red:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+/* Navbar user icon */
+.navbar-icon {
+    width: 30px; /* Ukuran ikon profil */
+    height: auto;
+    margin-right: 30px; /* Jarak antara ikon dan teks */
+}
+/* Navbar Right (Daftar, Masuk, Logout) */
+.navbar-right {
+    display: flex;
+    align-items: center; /* Ratakan elemen secara vertikal */
+    justify-content: flex-end; /* Letakkan di ujung kanan navbar */
+    margin-left: auto; /* Mendorong konten ke sebelah kanan */
+}
+
+/* Efek hover untuk tombol di navbar */
+.navbar-button:hover {
+    background-color: white; /* Warna putih */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+}
+
+/* Menempatkan tombol di sebelah kanan */
+.navbar-right {
+    float: right; /* Tempatkan tombol di sebelah kanan */
+}
+
+
+/* Main container for the Contact Us page */
+.contact-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Centering the title */
+.contact-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0d4732;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Styling the form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #0d4732;
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: none;
+    height: 150px;
+}
+
+/* Submit button */
+.contact-form button {
+    background-color: #0d4732;
+    color: white;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #084126;
+}
+
+/* Gaya untuk teks nama pengguna di navbar */
+.navbar-username {
+    font-size: 16px; /* Ukuran font */
+    margin-right: 10px; /* Jarak antara teks dan tombol logout */
+    line-height: 40px; /* Tinggi garis agar rata dengan tombol */
+    display: inline-block; /* Biar sebaris dengan tombol */
+}

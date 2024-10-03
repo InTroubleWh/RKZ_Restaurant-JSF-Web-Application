@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </h:head>
+    <h:body>
+        <ui:composition template="resources/templates/baseTemplate.xhtml">
+            <ui:define name="page-title">
+                <title>Order Page</title>
+                <h:outputStylesheet name="css/order.css"/>
+            </ui:define>
+            <ui:define name="body-content">
+                <!-- Main Section -->
+                <div class="main-container">
+                    <h2 class="title">Service</h2>
+
+                    <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                        <h:form>
+                            <div class="card-container">
+                                <!-- Dine In Card -->
+                                <div class="card">
+                                    <img src="resources/images/food.png" alt="Order Online" class="card-image" />
+                                    <h3 class="card-title">Order Online</h3>
+                                    <h:commandButton value="Select" action="MenuPage.xhtml?faces-redirect=true" class="card-button" />
+                                </div>
+
+                                <!-- Reservation Card -->
+                                <div class="card">
+                                    <img src="resources/images/booking.png" alt="Reservation" class="card-image" />
+                                    <h3 class="card-title">Reservation</h3>
+                                    <h:commandButton value="Select" action="ReservedPage.xhtml?faces-redirect=true" class="card-button" />
+                                </div>
+                            </div>
+                        </h:form>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{!userSessionBean.loggedIn}" style="margin:100px">
+                        <h3 style="color: red;">Please log in to access the Order features.</h3>
+                        <h:form>
+                            <h:commandLink value="Login" action="LoginPage.xhtml?faces-redirect=true" styleClass="navbar-button navbar-button-blue" />
+                        </h:form>
+                    </h:panelGroup>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

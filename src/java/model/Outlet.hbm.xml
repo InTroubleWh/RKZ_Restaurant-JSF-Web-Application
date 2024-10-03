@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2024 6:26:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Outlet" table="outlet" catalog="rkz_restaurant" optimistic-lock="version">
+        <id name="outletId" type="java.lang.Integer">
+            <column name="outletId" />
+            <generator class="identity" />
+        </id>
+        <property name="outletName" type="string">
+            <column name="outletName" length="55" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" not-null="true" />
+        </property>
+        <property name="serviceArea" type="int">
+            <column name="ServiceArea" not-null="true" />
+        </property>
+        <set name="transactionses" table="transactions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="outletId" not-null="true" />
+            </key>
+            <one-to-many class="model.Transactions" />
+        </set>
+        <set name="reservations" table="reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="outletId" not-null="true" />
+            </key>
+            <one-to-many class="model.Reservation" />
+        </set>
+    </class>
+</hibernate-mapping>

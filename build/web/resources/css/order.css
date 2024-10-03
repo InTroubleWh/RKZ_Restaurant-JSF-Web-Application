@@ -1,0 +1,350 @@
+@font-face {
+    font-family: 'gothamRoundedBold';
+    src: url('GothamRoundedBold.otf') format('opentype');
+    font-weight: normal;
+    font-style: bold;
+}
+
+body {
+    font-family: 'gothamRoundedBold',sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #333;
+    background-color: #f8f9fa; /* Warna latar belakang halaman */
+}
+
+/* Title Styling */
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 50px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Card Container Styling */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* Jarak antar card */
+    margin-top: 50px;
+    flex-wrap: wrap; /* Agar card bisa turun ke baris berikutnya di layar kecil */
+}
+
+/* Individual Card Styling */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Ukuran card */
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    margin-bottom: 30px; /* Jarak bawah antar card */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card-button {
+    background-color: #0d4732;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: white;
+    color: #0d4732;
+    border: 1px solid #0d4732;
+    transform: scale(1.05);
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .card-container {
+        gap: 20px; /* Mengurangi jarak antar card di layar kecil */
+    }
+
+    .card {
+        width: 100%; /* Ukuran penuh pada layar kecil */
+    }
+}
+/* Navbar Styling */
+.navbar {
+    width: 100%;
+    background-color: #ffffff; /* Mengubah navbar menjadi warna putih */
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Ruang antara logo dan konten kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+    font-family: 'gothamRoundedBold', sans-serif; /* Terapkan font ke navbar */
+}
+
+/* Bagian utama dari navbar */
+.navbar-content {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 12%;
+    transition: all 0.50s ease;
+    box-shadow: 0 4px 2px -2px #00000033;
+    background-color: #ffffff; /* Pastikan navbar tetap putih */
+}
+/* CSS for the logo */
+.navbar-logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust as needed */
+    flex: 0 1 auto;
+}
+
+.navbar-logo {
+    width: 80px; /* Adjust the size as needed */
+    height: auto;
+}
+
+/* Navbar links */
+.navbar-links {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    color: #000;
+    border-radius: 4px;
+    justify-content: center; /* Posisi link di tengah */
+    flex-grow: 1; /* Memungkinkan link untuk tumbuh dan menempati ruang */
+    gap: 10px; /* Memberi jarak antar link */
+    text-align: center; /* Memastikan teks berada di tengah */
+    margin-left: auto; /* Dorong ke kanan untuk memposisikan di tengah */
+    margin-right: auto; /* Dorong ke kiri untuk memposisikan di tengah */
+}
+
+/* Active Navbar Link Style */
+.navbar-link.active {
+    color:  #0d4732; /* ijo */
+}
+
+.navbar-link {
+    margin: 0 30px; /* Jarak antar link */
+    font-size: 16px;
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #0d4732; /* Warna saat hover */
+}
+
+/* Navbar buttons */
+.navbar-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px; /* Jarak antar tombol */
+}
+
+.navbar-button-blue {
+    text-decoration: none;
+    background-color: #0d4732;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Optional: Adjust padding for better appearance */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+.navbar-button-blue:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+
+.navbar-button-red {
+    background-color: #0d4732;
+    border-color: none;
+    color: white;
+}
+
+.navbar-button-red:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #0d4732; /* Change text color to match the original background */
+    border: 1px solid #0d4732; /* Optional: Add a border with the original color */
+}
+/* Navbar user icon */
+.navbar-icon {
+    width: 30px; /* Ukuran ikon profil */
+    height: auto;
+    margin-right: 30px; /* Jarak antara ikon dan teks */
+}
+/* Navbar Right (Daftar, Masuk, Logout) */
+.navbar-right {
+    display: flex;
+    align-items: center; /* Ratakan elemen secara vertikal */
+    justify-content: flex-end; /* Letakkan di ujung kanan navbar */
+    margin-left: auto; /* Mendorong konten ke sebelah kanan */
+}
+
+/* Efek hover untuk tombol di navbar */
+.navbar-button:hover {
+    background-color: white; /* Warna putih */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+}
+
+/* Menempatkan tombol di sebelah kanan */
+.navbar-right {
+    float: right; /* Tempatkan tombol di sebelah kanan */
+}
+
+/* Gaya untuk teks nama pengguna di navbar */
+.navbar-username {
+    font-size: 16px; /* Ukuran font */
+    margin-right: 10px; /* Jarak antara teks dan tombol logout */
+    line-height: 40px; /* Tinggi garis agar rata dengan tombol */
+    display: inline-block; /* Biar sebaris dengan tombol */
+}
+
+.footer-link {
+    color: #0d4732; /* Warna default */
+    text-decoration: none;
+}
+/* Active Footer Link Style - Mengubah warna teks menjadi merah */
+.footer-link.active {
+    color: white; /* Warna teks merah */
+    font-weight: bold; /* Teks ditebalkan */
+}
+.footer {
+    background-color: #0d4732;
+    padding: 60px 0;
+    font-family: 'gothamRoundedBold',sans-serif;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-col {
+    flex-basis: 30%;
+    padding: 0 15px;
+}
+.footer-col h4 {
+    font-size: 18px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: white; /* Warna merah garis bawah */
+    height: 3px;
+    width: 50px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+    color: white; /* Warna putih saat hover */
+}
+
+.social-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    line-height: 40px;
+    margin: 0 10px 10px 0;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #0d4732;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    list-style: none;
+}
+
+.social-links a:hover {
+    background-color: #0d4732;/* Warna merah saat hover */
+}
+
+@media screen and (max-width: 768px) {
+    .footer .row {
+        flex-direction: column;
+    }
+    .footer-col {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+    }
+}
